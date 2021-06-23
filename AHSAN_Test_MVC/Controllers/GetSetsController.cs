@@ -25,6 +25,18 @@ namespace AHSAN_Test_MVC.Controllers
             return View(await _context.GetSet.ToListAsync());
         }
 
+        // GET: GetSets/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        // Post: GetSets/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _context.GetSet.Where(q=> q.Question.Contains(SearchPhrase)).ToListAsync());
+        }
+
         // GET: GetSets/Details/5
         public async Task<IActionResult> Details(int? id)
         {
